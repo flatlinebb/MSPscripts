@@ -1,0 +1,21 @@
+WMIC NTEVENT where "LogFile='application' and Type='1001'" 
+WMIC NTEVENT where "LogFile='application' and Type='1001'"
+wmic NTEVENT WHERE "SourceName='W32Time'" GET /FORMAT:rawxml
+wmic NTEVENT WHERE "LogFile='application' and SourceName='Wininit'"
+
+wmic NTEVENT WHERE "TimeWritten>'07/29/2011 00:00:00'" GET /FORMAT:rawxml 
+
+Stylesheets supplied with WMIC:
+    csv.xsl, hform.xsl, htable-sortby.xsl, htable.xsl
+    texttable.xsl, textvaluelist.xsl, xml.xsl
+	
+WMIC NTEVENT WHERE "LogFile='application' AND SourceName='Microsoft-Windows-Wininit' AND EventCode=1001"
+get-winevent -FilterHashTable @{logname="Application"; id="1001"}| ?{$_.providername –match "wininit"} | fl timecreated, message
+WMIC NTEVENT WHERE "LogFile='application' AND SourceName='Microsoft-Windows-Wininit' AND EventCode=1001" GET /FORMAT:hform.xsl > output_hform.htm
+WMIC NTEVENT WHERE "LogFile='application' AND SourceName='Microsoft-Windows-Wininit' AND EventCode=1001" GET Mesasage /FORMAT:htable.xsl > output_htable.htm
+
+
+Retrieve list of warning and error events not from system or security logs - 
+WMIC NTEVENT WHERE "EventType<3 AND LogFile != 'System' AND LogFile != 'Security'" GET LogFile, SourceName, EventType, Message, TimeGenerated /FORMAT:"htable.xsl":" datatype = number":" sortby = EventType" > c:\appevent.htm
+
+WMIC NTEVENT WHERE "LogFile='application' AND SourceName='Microsoft-Windows-Wininit' AND EventCode=1001" GET Message /FORMAT:textvaluelist.xsl > Wininit_output.txt

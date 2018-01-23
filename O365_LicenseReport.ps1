@@ -1,0 +1,1 @@
+Get-MsolUser | ? { $_.Licenses.AccountSkuid -ne $null} | Select-Object -Property DisplayName,UserPrincipalName, @{Name="AccountSkuID";e={$_.licenses.AccountSkuid}}| Export-Csv -Path c:\Office365.csv -NoTypeInformation

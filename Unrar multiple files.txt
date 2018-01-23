@@ -1,0 +1,2 @@
+# To unrar multiple rar files into separe folders, and go through multiple rar files:
+for file in *.rar ; do unrar x -ad -c- -cfg- -o+ -y -kb "$file" ./Comixxx/ ; done

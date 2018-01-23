@@ -1,0 +1,1 @@
+wmic product where "name like '%Symantec Endpoint%'" call uninstall /nointeractive

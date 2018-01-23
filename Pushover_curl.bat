@@ -1,0 +1,1 @@
+curl -s --cacert "C:\Program Files\curl-7.33.0-win64\curl-ca-bundle.crt" -F "token=ad9BPvbNwN93ZtfyhoYkDbPYLM6cmw" -F "user=JAfaJPfHpRthYydXWqVPzMHLvgztsk" -F "message=SABnzbd downloads done on TINYWIN2" https://api.pushover.net/1/messages.json

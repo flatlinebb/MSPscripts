@@ -1,0 +1,23 @@
+ASR Writer	VSS	
+BITS Writer	BITS
+COM+ REGDB Writer	VSS	Volume Shadow Copy
+DFS Replication service writer	DFSR	DFS Replication
+DHCP Jet Writer	DHCPServer	DHCP Server
+FRS Writer	NtFrs	File Replication
+FSRM writer	srmsvc	File Server Resource Manager
+IIS Config Writer	AppHostSvc	Application Host Helper Service
+IIS Metabase Writer	IISADMIN	IIS Admin Service
+Microsoft Exchange Writer	MSExchangeIS	Microsoft Exchange Information Store
+Microsoft Hyper-V VSS Writer	vmms	Hyper-V Virtual Machine Management
+NTDS	NTDS	Active Directory Domain Services
+OSearch VSS Writer	OSearch	Office SharePoint Server Search
+OSearch14 VSS Writer	OSearch14	SharePoint Server Search 14
+Registry Writer	VSS	Volume Shadow Copy
+Shadow Copy Optimization Writer	VSS	Volume Shadow Copy
+SPSearch VSS Writer	SPSearch	Windows SharePoint Services Search
+SPSearch4 VSS Writer	SPSearch4	SharePoint Foundation Search V4
+SqlServerWriter	SQLWriter	SQL Server VSS Writer
+System Writer	CryptSvc	Cryptographic Services
+TermServLicensing	TermServLicensing	Remote Desktop Licensing
+WINS Jet Writer	WINS	Windows Internet Name Service (WINS)
+WMI Writer	Winmgmt	Windows Management Instrumentation

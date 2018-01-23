@@ -1,0 +1,1 @@
+(Get-WmiObject -Class Win32_Product -Filter "Name='Symantec Endpoint Protection'" -ComputerName . ).Uninstall()

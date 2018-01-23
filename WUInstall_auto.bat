@@ -1,0 +1,1 @@
+wuinstall.exe /install /bypass_wsus /classification CURSED /rebootcycle /autoaccepteula /nomatch "Bing|Language|Malicious" /logfile_append wuinstall.log /disable_ie_firstruncustomize /quiet /disableprompt

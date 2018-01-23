@@ -1,0 +1,1 @@
+net stop UrBackupClientBackend && net start UrBackupClientBackend

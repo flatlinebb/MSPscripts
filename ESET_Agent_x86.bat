@@ -1,0 +1,1 @@
+msiexec /i "\\hoac-fs\MIS\Software\ESET\x86\Agent_x86.msi" TRANSFORMS="\\hoac-fs\MIS\Software\ESET\x86\ERA Agent x86.mst"
