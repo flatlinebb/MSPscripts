@@ -1,0 +1,1 @@
+get-childitem cert:LocalMachine\My -recurse | where-object {$_.NotAfter -gt (get-date)} | select Subject,FriendlyName,Thumbprint,@{Name="Expires in (Days)";Expression={($_.NotAfter).subtract([DateTime]::Now).days}} | Sort "Expires in (Days)" | ft -AutoSize -Wrap

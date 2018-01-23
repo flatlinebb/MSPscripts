@@ -1,3 +1,4 @@
+@ECHO OFF
 REM  Reset Windows Update components:
 REM  https://support.microsoft.com/en-us/kb/971058
 
@@ -95,5 +96,9 @@ If %%ERRORLEVEL%% == 0 (
 )
  
 ECHO "ALL DONE!!!"
-ECHO "Please Reboot your system now"
+REM ECHO "Please Reboot your system now"
+ECHO "Press any key to Reboot now!"
+PAUSE
+shutdown /r /t 0
+
 

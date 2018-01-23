@@ -1,0 +1,2 @@
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile("http://download.windowsupdate.com/d/msdownload/update/software/updt/2015/04/windows6.1-kb3020369-x64_5393066469758e619f21731fc31ff2d109595445.msu","c:\temp\windows6.1-kb3020369-x64_5393066469758e619f21731fc31ff2d109595445.msu")

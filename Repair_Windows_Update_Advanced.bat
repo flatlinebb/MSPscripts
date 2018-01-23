@@ -1,7 +1,6 @@
 @ECHO OFF
-
 REM  Repair Windows Update Advanced Script
-REM  Reset Windows Update components, per MS KB:
+REM  Reset Windows Update components:
 REM  https://support.microsoft.com/en-us/kb/971058
 
 REM STEP 1:
@@ -15,12 +14,12 @@ net stop cryptsvc
 REM STEP 2:
 REM Delete the qmgr*.dat files.
 ECHO "Delete the qmgr*.dat files ..."
-DEL "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Downloader\qmgr*.dat"
+Del "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Downloader\qmgr*.dat"
 
 
-REM If this is your first attempt at resolving your Windows Update issues by following the steps in this article, 
-REM you should skip step 4 and go to step 5. You should follow step 4 at this point in the troubleshooting 
-REM only if you cannot resolve your Windows Update issues after you follow all steps except step 4. 
+REM If this is your first attempt at resolving your Windows Update issues by following the steps in this article, you should skip step 4 and go to step 5. You should follow step 4 at this point in 
+
+the troubleshooting only if you cannot resolve your Windows Update issues after you follow all steps except step 4. 
 REM (Step 4 is performed by the "Aggressive" mode of the Fix it Solution that was mentioned earlier.)
 
 REM STEP 4
@@ -127,5 +126,5 @@ If %%ERRORLEVEL%% == 0 (
 :ALLDONE
 ECHO "ALL DONE!!!"
 ECHO "Please Reboot your system now or install the Update Agent if not downloaded above"
-
+PAUSE
 
