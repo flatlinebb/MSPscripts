@@ -1,0 +1,6 @@
+REM REM cfv -r -p "E:\-=HD MOVIES=-"
+REM REM ECHO Checking E:\-=HD MOVIES=- ...
+REM REM timeit.exe -s -i cfv.bat -r -p "E:\-=HD MOVIES=-"
+@ECHO Checking G:\-=HD MOVIES=- ...
+timeit.exe -s -i cfv.bat -r -p "G:\-=HD MOVIES=-"
+REM REM pause

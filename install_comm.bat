@@ -1,0 +1,1 @@
+"\\deltads\ddc\Packages\MICROSOFT - OFFICE COMMUNICATOR2005\Communicator_Launcher.EXE"

@@ -1,0 +1,13 @@
+Dim objShell : Set objShell = CreateObject("WScript.Shell")
+Dim objFSO : Set objFSO = CreateObject("Scripting.FileSystemObject")
+Dim objFolder : Set objFolder = objFSO.GetFolder(objShell.ExpandEnvironmentStrings("%windir%") & "\system32\wbem")
+Dim file
+For Each file In objFolder.Files
+	If LCase(Right(file.name,3)) = "dll" Or LCase(Right(file.name,3)) = "exe" Then
+		If file.name <>  "mofcomp.exe" and file.name <> "wmic.exe" Then objShell.Run("regsvr32.exe /S " & file.path),0,True
+	End If
+Next
+Set objShell = Nothing
+Set objFolder = Nothing
+Set objFSO = Nothing
+WScript.Quit

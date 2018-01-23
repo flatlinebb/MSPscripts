@@ -1,0 +1,6 @@
+MBAM Silent Install:
+mbam-setup.exe /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /NOCANCEL
+
+Silent Uninstall:
+Uninstall no reboot
+unins000.exe /VERYSILENT /NORESTART /SUPPRESSMSGBOXES

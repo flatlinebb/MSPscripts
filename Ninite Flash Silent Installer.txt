@@ -1,0 +1,3 @@
+Ninite Flash Silent Installer:
+
+"Ninite Flash Flash IE Installer.exe" /silent report.txt /repair

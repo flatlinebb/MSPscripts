@@ -1,0 +1,5 @@
+Thunderbird Silent install:
+"Thunderbird Setup 3.0.exe" /S INI=thunderbird.ini
+
+Thunderbird Lightning Extension Install for All Users:
+thunderbird -install-global-extension extension-file

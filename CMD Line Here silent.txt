@@ -1,0 +1,3 @@
+CMD Line Here Silent Install:
+
+cmdherepowertoysetup.exe /S /v/qn

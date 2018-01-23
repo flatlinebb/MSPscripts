@@ -1,0 +1,15 @@
+MyDefrag silent Install:
+
+MyDefrag-v4.3.1.exe /SP /Silent /NORESTART /LOADINF=mydefrag.inf
+
+
+/SP
+Disable dialog box
+
+/Silent
+Shows progress window
+
+/NORESTART
+duh
+
+/LOADINF="filename"

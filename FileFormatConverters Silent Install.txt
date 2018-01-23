@@ -1,0 +1,18 @@
+FileFormatConverters Siletn Install:
+
+FileFormatConverters.exe /passive /norestart
+---------------------------
+Compatibility Pack for the 2007 Office system
+---------------------------
+Usage:
+/extract:path, extracts the content of the package to the path folder
+/log[:path to log file], enables verbose logging for the update installation
+/lang:lcid, sets the user interface to the specified locale when multiple locales are available within the package
+/quiet, runs the package in silent mode
+/passive, runs the update without any interaction from the user
+/norestart, prevents prompting of user when reboot of machine is needed
+/forcerestart, forced restart of machine once update is complete
+/?, shows this help message
+---------------------------
+OK   
+---------------------------

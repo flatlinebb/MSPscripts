@@ -1,0 +1,15 @@
+CCleaner Silent Install:
+
+For this get the slim version, its on their website
+
+http://www.ccleaner.com/download/builds
+
+Silent Install;
+
+ccsetup224_slim.exe /S
+
+*Has to be UPPERCASE S!!!
+
+Silent Uninstall;
+"C:\Program Files\CCleaner\uninst.exe" /S
+

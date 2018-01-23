@@ -1,0 +1,4 @@
+7zip silent Installer:
+
+silent install /S
+example= 7z465.exe /S

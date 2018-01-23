@@ -1,0 +1,4 @@
+psexec @comp_list.txt -u deltads\ca55260 -c install_comm.bat
+
+psexec @comp_list.txt cmd /c dir "C:\Documents and Settings\All Users\Start Menu\Programs" /b | find /I "Communicator"
+psexec @comp_list.txt cmd /c dir "C:\Documents and Settings\All Users\Start Menu\Programs" /b

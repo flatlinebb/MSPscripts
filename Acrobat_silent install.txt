@@ -1,0 +1,18 @@
+Adobe Acrobar Reader 9.30:
+AdbeRdr90_en_US.exe /sPB /rs /msi /qb /norestart EULA_ACCEPT=YES
+
+
+---------------------------
+setup
+---------------------------
+/sAll		Silent Mode for product
+/sPB		Silent Mode with Progress Bar for product
+/rs		Reboot Suppress
+/rps		Reboot Prompt Suppress
+/ini "PATH"	Alternative initialization file
+/sl "LANG_ID"	Set Language; LANG_ID - Code in decimal digits
+/l		Enable Error Logging
+/msi[Command line]	Parameters for MSIEXEC
+---------------------------
+OK   
+---------------------------
