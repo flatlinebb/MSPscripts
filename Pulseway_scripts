@@ -8,19 +8,6 @@ Debian: Check and List Updates (bash):
 apt-get -qq update && apt-get -s upgrade
 
 
-!Migrate to Team Server:
-Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name AccountPassword -Value "CgCw3+SbxdPCLLAtrsdVCBtcqNwTgWNr06dvcisiOg/gEhW6sNdd2GEQYLi7UNaIPQ8HFUn7Y2AIXEV+DQMSbCTFL7Vj3PFb+4Bd1JlJL9ogia8cW0KdERxAzeGVnB6OCARSfm/SSJ7giNKA+mFfzg=="
-Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name AccountPasswordCtrl -Value "1A-6E-48-8C-5C-3B-1E-92-E1-86-41-22-98-2E-9A-8F"
-Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name AccountUsername -Value "zoJmS6P10ZGXEGr8jqeZtY48/eRU4q8scfjWbGbRATK6jbx4frdO9A+LiSI3NWizZ+pb666/+9uaxG82rP4ahlxS5nQSIzXIAjLq+NuBzqRksHEbWjIjG0qx/JrXMAdyCjCK0G5AdrB6YgCjYWnn1A=="
-Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name AccountUsernameCtrl -Value "A8-AC-1F-47-D7-60-0B-E4-EE-0A-DA-ED-91-74-BD-22"
-Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name UseCustomServer -Value "1"
-Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name CustomServerAddress -Value "fieldhaven.pulseway.com"
-
-sed -i 's/\t<Account.*/\t<Account Username="administrator" Password="Somuchlove4cats" UseCustomServer="true" CustomServerAddress="fieldhaven.pulseway.com"\/>/' /etc/pulseway/config.xml
-service pulseway restart
-service pulseway status
-
-
 Backup Drivers:
 wget http://www.massivecloudstore.com/utils/ddc.exe -P C:\Support -nc -nv
 C:\Support\ddc.exe b /target:"C:\Drivers"
