@@ -1,0 +1,205 @@
+Pulseway Scripts
+
+Debian Update and Install Upgrades (bash):
+apt-get -qq update && apt-get -y upgrade
+
+
+Debian: Check and List Updates (bash):
+apt-get -qq update && apt-get -s upgrade
+
+
+!Migrate to Team Server:
+Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name AccountPassword -Value "CgCw3+SbxdPCLLAtrsdVCBtcqNwTgWNr06dvcisiOg/gEhW6sNdd2GEQYLi7UNaIPQ8HFUn7Y2AIXEV+DQMSbCTFL7Vj3PFb+4Bd1JlJL9ogia8cW0KdERxAzeGVnB6OCARSfm/SSJ7giNKA+mFfzg=="
+Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name AccountPasswordCtrl -Value "1A-6E-48-8C-5C-3B-1E-92-E1-86-41-22-98-2E-9A-8F"
+Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name AccountUsername -Value "zoJmS6P10ZGXEGr8jqeZtY48/eRU4q8scfjWbGbRATK6jbx4frdO9A+LiSI3NWizZ+pb666/+9uaxG82rP4ahlxS5nQSIzXIAjLq+NuBzqRksHEbWjIjG0qx/JrXMAdyCjCK0G5AdrB6YgCjYWnn1A=="
+Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name AccountUsernameCtrl -Value "A8-AC-1F-47-D7-60-0B-E4-EE-0A-DA-ED-91-74-BD-22"
+Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name UseCustomServer -Value "1"
+Set-ItemProperty -Path "HKLM:\Software\MMSOFT Design\PC Monitor\" -Name CustomServerAddress -Value "fieldhaven.pulseway.com"
+
+sed -i 's/\t<Account.*/\t<Account Username="administrator" Password="Somuchlove4cats" UseCustomServer="true" CustomServerAddress="fieldhaven.pulseway.com"\/>/' /etc/pulseway/config.xml
+service pulseway restart
+service pulseway status
+
+
+Backup Drivers:
+wget http://www.massivecloudstore.com/utils/ddc.exe -P C:\Support -nc -nv
+C:\Support\ddc.exe b /target:"C:\Drivers"
+dir C:\Drivers
+
+
+Check for Wannacry Patch:
+#list of all the hotfixes from https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+$hotfixes = "KB3205409", "KB3210720", "KB3210721", "KB3212646", "KB3213986", "KB4012212", "KB4012213", "KB4012214", "KB4012215", "KB4012216", "KB4012217", "KB4012218", "KB4012220", "KB4012598", "KB4012606", "KB4013198", "KB4013389", "KB4013429", "KB4015217", "KB4015438", "KB4015546", "KB4015547", "KB4015548", "KB4015549", "KB4015550", "KB4015551", "KB4015552", "KB4015553", "KB4015554", "KB4016635", "KB4019213", "KB4019214", "KB4019215", "KB4019216", "KB4019263", "KB4019264", "KB4019472", "KB4015221", "KB4019474", "KB4015219", "KB4019473"
+
+#checks the computer it's run on if any of the listed hotfixes are present
+$hotfix = Get-HotFix -ComputerName $env:computername | Where-Object {$hotfixes -contains $_.HotfixID} | Select-Object -property "HotFixID"
+
+#confirms whether hotfix is found or not
+if (Get-HotFix | Where-Object {$hotfixes -contains $_.HotfixID})
+{
+"Found HotFix: " + $hotfix.HotFixID
+} else {
+"Didn't Find HotFix"
+}
+exit 0;
+
+
+
+Choco Feature: Empty checksums:
+choco feature enable -n allowEmptyChecksums
+
+
+Upgrade RUT Host:
+Download latest Remote Utilities host.msi file and upgrade the host.
+wget --no-check-certificate https://www.remoteutilities.com/download/host/ -O C:\support\host.msi
+msiexec /i C:\support\host.msi /quiet /norestart /log C:\support\host_install.log
+dir C:\support
+exit 0
+
+
+Choco Feature: Enable Global Confirm:
+Set the global option "allowGlobalConfirmation" to enabled, thus not requiring -y to perform actions
+choco feature enable -n allowGlobalConfirmation
+
+
+Choco Install: ALL:
+Installs Chocolatey, and then downloads other software:
+7zip aria2 wget dotnet4.6.2 powershell GoogleChrome Firefox jre8 flashplayeractivex flashplayerplugin flashplayerppapi foxitreader pstools PSWindowsUpdate
+
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%%PATH%%;%%ALLUSERSPROFILE%%\chocolatey\bin
+choco feature enable -n allowEmptyChecksums
+choco feature enable -n allowGlobalConfirmation
+choco install 7zip aria2 wget dotnet4.6.2 powershell GoogleChrome Firefox jre8 flashplayeractivex flashplayerplugin flashplayerppapi foxitreader pstools PSWindowsUpdate
+
+
+
+Choco Install: ALL Apps:
+Installs other software:
+7zip aria2 wget dotnet4.6.2 powershell GoogleChrome Firefox jre8 flashplayeractivex flashplayerplugin flashplayerppapi foxitreader pstools PSWindowsUpdate
+choco feature enable -n allowEmptyChecksums
+choco feature enable -n allowGlobalConfirmation
+choco install 7zip aria2 wget dotnet4.6.2 powershell GoogleChrome Firefox jre8 flashplayeractivex flashplayerplugin flashplayerppapi foxitreader pstools PSWindowsUpdate
+exit 0
+
+
+
+Choco Install: FoxitReader
+Install FoxitReader PDF Viewer using chocolatey. Delete the icon from Public Desktop
+cinst FoxitReader -y
+del /f "C:\Users\Public\Desktop\Foxit Reader.lnk"
+
+
+
+Choco Install: jre8
+Install Java 8 using chocolatey
+cinst jre8 -y
+
+
+
+Clear local Print Queue
+net stop spooler
+del %systemroot%\System32\spool\printers\* /Q /F /S
+net start spooler
+
+
+Disable Automatic Updates
+Disable Automatic Updates via the registry
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update" /v AUOptions /t REG_DWORD /d 1 /f
+
+
+
+Disable Hibernate
+Disables Hibernate and deletes the hibernate.sys file
+powercfg.exe /hibernate off
+
+
+Get CHKDSK Results
+get-winevent -FilterHashTable @{logname="Application"; id="1001"}| ?{$_.providername -match "wininit"} | fl timecreated, message | Tee-Object -FilePath C:\Support\CHKDSKResults.txt
+exit 0;
+
+
+MSE Force Update
+Force an immediate update of the virus definitions for MS Security Essentials
+@ECHO OFF
+IF EXIST "%ProgramFiles%\Microsoft Security Essentials\MpCmdRun.exe" (
+	"%ProgramFiles%\Microsoft Security Essentials\MpCmdRun.exe" -SignatureUpdate
+) ELSE (
+	"%programfiles%\Microsoft Security Client\MpCmdRun.exe" -SignatureUpdate
+)
+exit 0;
+
+
+
+
+Restart Computer
+Restarts the computer using PS "Restart-Computer" cmdlet
+Restart-Computer
+exit 0;
+
+
+
+Set Auto-Update Choco Apps 04:30
+Create a scheduled task to update all choco packages Daily, at 4:30 AM
+schtasks.exe /create /s "localhost" /ru "System" /tn "Update Chocolatey packages" /tr "%%ChocolateyInstall%%\bin\cup all" /sc DAILY /st 04:30 /F
+
+
+
+Set Auto-Update MSE Daily 23:25
+Create a scheduled task to update MS Security Essentials Defs Daily, at 11:25 PM
+schtasks.exe /create /s "localhost" /ru "System" /tn "Update MSE" /tr "C:\Support\AeroFS\MSE_update.bat" /sc DAILY /st 23:25 /F
+
+
+
+Get Your WAN IP
+Run this script to get your External WAN IP without any 3rd party apps. Should work on all Windows/Linux systems.
+nslookup myip.opendns.com. resolver1.opendns.com | find /i "address" | find /v "208.67.222.222"
+
+
+
+Restart CrashPlan Service
+Restarts the CrashPlan service to restore connection to CP Server
+sc stop CrashplanService
+sc start CrashplanService
+sc query CrashplanService
+
+
+
+Restart PC Monitor Service
+Restarts the PC Monitor service to restore connection to Pulseway
+sc stop "PC Monitor"
+sc start "PC Monitor"
+sc query "PC Monitor"
+
+
+Restart UrBackup Service
+Restarts the UrBackup Service on the machine
+Restart-Service -Name UrBackupClientBackend
+exit 0;
+
+
+Choco Pin: CrashPlan
+Pins CrashPlan app in Chocolatey to prevent automatic updates
+choco pin add -n=crashplan
+choco pin list
+
+
+Choco Set: Cache Location
+choco config set cacheLocation %TEMP%
+choco config get cacheLocation
+exit 0;
+
+
+
+
+Disable UAC
+Disable UAC via Registry edit
+Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System -Name EnableLUA  -Value 0
+
+
+Enable UAC
+Enable UAC via Registry edit
+Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System -Name EnableLUA  -Value 1
+
+
+
+
