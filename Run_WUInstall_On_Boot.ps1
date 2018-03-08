@@ -1,18 +1,5 @@
-﻿##
-# Put this in the shortut in shell:StartUp (C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup)
-# Target: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "C:\Users\Administrator\Downloads\wuinstall.ps1"
-# Start in: C:\Users\Administrator\Downloads
 ##
-
-param ( $Show )
-if ( !$Show ) 
-{
-    PowerShell -NoExit -File $MyInvocation.MyCommand.Path 1
-    return
-}
-
-##
-# Put this in the shortut in shell:StartUp
+# Put this in a shortcut in 'shell:StartUp'
 # C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup
 # C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "C:\Users\Administrator\Downloads\wuinstall.ps1"
 # Start in: C:\Users\Administrator\Downloads
