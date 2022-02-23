@@ -21,7 +21,7 @@ Write-Host "Starting Windows Update process. Please wait for it to complete ..."
 Write-Host "Hiding junk updates for Bing and Skype ..."
 Hide-WindowsUpdate -Title "Bing*,Skype*" -MicrosoftUpdate -Confirm:$false
 
-# Only included here as a smaple on hopw to hide specific KB's:
+# Only included here as a sample on how to hide specific KB's:
 # Write-Host "Hiding MS Essentials updates: KB3140479,KB2902907,KB2876229  ...."
 # Hide-WindowsUpdate -KBArticleID "KB2876229,KB2673774,KB2673773,KB2673772,KB2673771,KB2673770,KB2626808,KB2626806,KB2626807,KB2626804,KB2617376" -MicrosoftUpdate -Confirm:$false
 
