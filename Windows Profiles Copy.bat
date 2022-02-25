@@ -50,7 +50,7 @@ REM Copy Favorites
 REM C:\Documents and Settings\$OLDPROF\Favorites --> "C:\Documents and Settings\$NEWPROF\Favorites"
 REM Copy My Documents
 REM "C:\Documents and Settings\$OLDPROF\My Documents" --> "C:\Documents and Settings\$NEWPROF\My Documents"
-REM REM iii. Copy Outlook profile folders “Signatures” and “Outlook” from OLD profile c$\Documents and Settings\caXXXX\Application Data\Microsoft
+REM REM iii. Copy Outlook profile folders â€œSignaturesâ€ and â€œOutlookâ€ from OLD profile c$\Documents and Settings\caXXXX\Application Data\Microsoft
 REM Copy Outlook profile
 REM "C:\Documents and Settings\$OLDPROF\Application Data\Microsoft\Outlook" --> "C:\Documents and Settings\$NEWPROF\Application Data\Microsoft\Outlook"
 REM Copy Outlook Address Book
