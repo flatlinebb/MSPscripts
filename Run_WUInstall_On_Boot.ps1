@@ -3,23 +3,26 @@
 ##
 #
 ##
-# To install the module, please run the commands below:
-#      [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-#      Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Confirm:$false -ErrorAction SilentlyContinue
-#      Register-PSRepository -Default -ErrorAction SilentlyContinue
-#      Set-PSRepository -Name PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
-#      Set-ExecutionPolicy RemoteSigned -Force
-#      Install-Module PSWindowsUpdate -Confirm:$false -ErrorAction SilentlyContinue
-#      Import-Module PSWindowsUpdate -ErrorAction SilentlyContinue
+<# To install the module, please run the commands below:
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Confirm:$false -ErrorAction SilentlyContinue
+Register-PSRepository -Default -ErrorAction SilentlyContinue
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+Set-ExecutionPolicy RemoteSigned -Force
+Install-Module PSWindowsUpdate -Confirm:$false -ErrorAction SilentlyContinue
+Import-Module PSWindowsUpdate -ErrorAction SilentlyContinue
+#>
 ##
-# Put this command in a shortut in "shell:StartUp" (C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup) so it runs on Windows start up
-#    C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "C:\Support\Run_WUInstall_On_Boot.ps1"
-#    Start in: C:\Support
+<# Put this command in a shortut in "shell:StartUp" (C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup) so it runs on Windows start up
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "C:\Support\Run_WUInstall_On_Boot.ps1"
+  Start in: C:\Support
+#>
 ##
-# Or run from a separate batch file located in the same folder as the PS script:
-#    @ECHO OFF
-#    powershell.exe -NoLogo -NonInteractive -NoProfile "Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File "%~dp0Run_WUInstall_On_Boot.ps1"' -Verb RunAs"
-#    exit
+<# Or run from a separate batch file located in the same folder as the PS script:
+@ECHO OFF
+powershell.exe -NoLogo -NonInteractive -NoProfile "Start-Process powershell -ArgumentList '-ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File "%~dp0Run_WUInstall_On_Boot.ps1"' -Verb RunAs"
+exit
+#>
 ##
 
 param ( $Show )
