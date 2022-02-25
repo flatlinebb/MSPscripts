@@ -8,12 +8,6 @@ Debian: Check and List Updates (bash):
 apt-get -qq update && apt-get -s upgrade
 
 
-Backup Drivers:
-wget http://www.massivecloudstore.com/utils/ddc.exe -P C:\Support -nc -nv
-C:\Support\ddc.exe b /target:"C:\Drivers"
-dir C:\Drivers
-
-
 Check for Wannacry Patch:
 #list of all the hotfixes from https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
 $hotfixes = "KB3205409", "KB3210720", "KB3210721", "KB3212646", "KB3213986", "KB4012212", "KB4012213", "KB4012214", "KB4012215", "KB4012216", "KB4012217", "KB4012218", "KB4012220", "KB4012598", "KB4012606", "KB4013198", "KB4013389", "KB4013429", "KB4015217", "KB4015438", "KB4015546", "KB4015547", "KB4015548", "KB4015549", "KB4015550", "KB4015551", "KB4015552", "KB4015553", "KB4015554", "KB4016635", "KB4019213", "KB4019214", "KB4019215", "KB4019216", "KB4019263", "KB4019264", "KB4019472", "KB4015221", "KB4019474", "KB4015219", "KB4019473"
@@ -34,14 +28,6 @@ exit 0;
 
 Choco Feature: Empty checksums:
 choco feature enable -n allowEmptyChecksums
-
-
-Upgrade RUT Host:
-Download latest Remote Utilities host.msi file and upgrade the host.
-wget --no-check-certificate https://www.remoteutilities.com/download/host/ -O C:\support\host.msi
-msiexec /i C:\support\host.msi /quiet /norestart /log C:\support\host_install.log
-dir C:\support
-exit 0
 
 
 Choco Feature: Enable Global Confirm:
