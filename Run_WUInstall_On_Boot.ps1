@@ -3,7 +3,7 @@
 ##
 #
 ##
-<# To install the module, please run the commands below:
+<# To install the 'PSWindowsUpdate' module, please run the commands below:
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Confirm:$false -ErrorAction SilentlyContinue
 Register-PSRepository -Default -ErrorAction SilentlyContinue
