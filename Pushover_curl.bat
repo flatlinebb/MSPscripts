@@ -1,1 +1,1 @@
-curl -s --cacert "C:\Program Files\curl-7.33.0-win64\curl-ca-bundle.crt" -F "token=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx" -F "user=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" -F "message=xxxxxxxxx downloads done on xxxxxxxx" https://api.pushover.net/1/messages.json
+curl -s --cacert "C:\Program Files\curl-7.33.0-win64\curl-ca-bundle.crt" -F "token=xxxxxxxxxxxxxxxxxxxxxxxxxxx" -F "user=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" -F "message=xxxxxxxxx downloads done on xxxxxxxxx" https://api.pushover.net/1/messages.json

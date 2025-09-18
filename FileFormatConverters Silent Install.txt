@@ -1,4 +1,4 @@
-FileFormatConverters Siletn Install:
+FileFormatConverters Silent Install:
 
 FileFormatConverters.exe /passive /norestart
 ---------------------------
