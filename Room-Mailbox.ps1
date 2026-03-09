@@ -28,7 +28,7 @@ Function Validate-UserSelection
     )
     foreach($str in $AllowedAnswers.ToString().Split(","))
     {
-        if($str -eq $Selection)
+        if($str.Trim() -eq $Selection)
         {
             return $true
         }
