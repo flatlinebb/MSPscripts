@@ -1,6 +1,6 @@
 <#
 
-    Get-MsolUserLicense.ps1
+    O365_Get-MsolUserLicense.ps1
     
     makes a report of license type and service plans per use , and saves one Excel-sheet (CSV) per uses license type.
 
@@ -15,7 +15,7 @@
     Changed: Fetching all users once, instead of every license type, givea huge speed boost.
 #>
 
-$VerbosePreference = 'Continue'    # Makes verbose : Modify to your needs
+$VerbosePreference = 'Continue'    # Makes verbose meldingen zichtbaar : Modify to your needs
 # The Reports will be written to files in the current working directory
 
 # Connect to Microsoft Online IF NEEDED
