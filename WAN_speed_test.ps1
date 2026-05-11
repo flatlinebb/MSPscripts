@@ -102,7 +102,7 @@ id : 1296
 $cons = $ServerList.settings.servers.server 
 
 #Below we calculate servers relative closeness to you by doing some math against latitude and longitude. 
-foreach($val in $cons) 
+$ServerInformation = @(foreach($val in $cons)
 { 
     $R = 6371;
     [float]$dlat = ([float]$oriLat - [float]$val.lat) * 3.14 / 180;
@@ -111,10 +111,8 @@ foreach($val in $cons)
     [float]$c = 2 * [math]::Atan2([math]::Sqrt([float]$a ), [math]::Sqrt(1 - [float]$a));
     [float]$d = [float]$R * [float]$c;
 
-    $ServerInformation +=
-@([pscustomobject]@{Distance = $d; Country = $val.country; Sponsor = $val.sponsor; Url = $val.url })
-
-}
+    [pscustomobject]@{Distance = $d; Country = $val.country; Sponsor = $val.sponsor; Url = $val.url }
+})
 
 $serverinformation = $serverinformation | Sort-Object -Property distance
 
