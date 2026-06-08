@@ -18,11 +18,6 @@
 $VerbosePreference = 'Continue'    # Makes verbose meldingen zichtbaar : Modify to your needs
 # The Reports will be written to files in the current working directory
 
-# Connect to Microsoft Online IF NEEDED
-#write-host "Connecting to Office 365..."
-#Import-Module MSOnline
-#Connect-MsolService -Credential $Office365credentials
-
 # Get a list of all licences that exist within the tenant
 $licensetype = Get-MsolAccountSku | Where {$_.ConsumedUnits -ge 1}
 
