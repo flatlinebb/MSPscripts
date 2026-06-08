@@ -117,17 +117,9 @@ $ServerInformation = @(foreach($val in $cons)
 $serverinformation = $serverinformation | Sort-Object -Property distance
 
 #Runs the functions 4 times and takes the highest result.
-$DLResults1 = downloadSpeed($serverinformation[0].url)
-$SpeedResults += @([pscustomobject]@{Speed = $DLResults1;})
-
-$DLResults2 = downloadSpeed($serverinformation[1].url)
-$SpeedResults += @([pscustomobject]@{Speed = $DLResults2;})
-
-$DLResults3 = downloadSpeed($serverinformation[2].url)
-$SpeedResults += @([pscustomobject]@{Speed = $DLResults3;})
-
-$DLResults4 = downloadSpeed($serverinformation[3].url)
-$SpeedResults += @([pscustomobject]@{Speed = $DLResults4;})
+$SpeedResults = @(foreach ($i in 0..3) {
+    [pscustomobject]@{Speed = (downloadSpeed $serverinformation[$i].url)}
+})
 
 $UnsortedResults = $SpeedResults | Sort-Object -Property speed
 $WanSpeed = $UnsortedResults[3].speed
