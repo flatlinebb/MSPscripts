@@ -22,6 +22,28 @@ Import-Module msonline
 Connect-MsolService -Credential $Office365Credential
 $date = Get-Date -Format "MM-dd-yyyy"
 $Mailboxes = Get-Mailbox -ResultSize Unlimited | where {$_.RecipientTypeDetails -ne "DiscoveryMailbox"}
+
+# Bulk fetch Mailbox Statistics and MSOL Users to avoid N+1 queries
+$AllMailboxStats = $Mailboxes | Get-MailboxStatistics
+$MailboxStatsDict = @{}
+foreach ($stat in $AllMailboxStats) {
+    # Get-MailboxStatistics objects usually have Identity or MailboxGuid or DisplayName.
+    # In Office365, MailboxGuid is unique.
+    if ($null -ne $stat.MailboxGuid) {
+        $MailboxStatsDict[$stat.MailboxGuid.ToString()] = $stat
+    } elseif ($null -ne $stat.DisplayName) {
+        $MailboxStatsDict[$stat.DisplayName] = $stat
+    }
+}
+
+$AllMsolUsers = Get-MsolUser -All
+$MsolUsersDict = @{}
+foreach ($user in $AllMsolUsers) {
+    if ($null -ne $user.UserPrincipalName) {
+        $MsolUsersDict[$user.UserPrincipalName] = $user
+    }
+}
+
 $MSOLDomain = Get-MsolDomain | where {$_.Authentication -eq "Managed" -and $_.IsDefault -eq "True"}
 $MSOLPasswordPolicy = Get-MsolPasswordPolicy -DomainName $MSOLDomain.name
 $MSOLPasswordPolicy = $MSOLPasswordPolicy.ValidityPeriod.ToString()
