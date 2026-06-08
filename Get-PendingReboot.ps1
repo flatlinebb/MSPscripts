@@ -113,7 +113,7 @@ Process {
 
 	    ## Making registry connection to the local/remote computer
 	    $HKLM = [UInt32] "0x80000002"
-	    $WMI_Reg = [WMIClass] "\\$Computer\root\default:StdRegProv"
+	    $WMI_Reg = Get-WmiObject -List -Namespace "root\default" -Class "StdRegProv" -ComputerName $Computer
 						
 	    ## If Vista/2008 & Above query the CBS Reg Key
 	    If ([Int32]$WMI_OS.BuildNumber -ge 6001) {
