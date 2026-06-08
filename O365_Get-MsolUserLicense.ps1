@@ -43,9 +43,11 @@ foreach ($license in $licensetype)
 
  $headerstring = "DisplayName;UserPrincipalName;JobTitle;Office;AccountSku"
  
- foreach ($row in $($license.ServiceStatus)) 
- {
-  $headerstring = ($headerstring + ";" + $row.ServicePlan.servicename)
+ $services = foreach ($row in $($license.ServiceStatus)) {
+  $row.ServicePlan.servicename
+ }
+ if ($services) {
+  $headerstring += ";" + ($services -join ";")
  }
  
  Out-File -FilePath $LicenseTypeReport -InputObject $headerstring -Encoding UTF8 -append
@@ -61,10 +63,13 @@ foreach ($license in $licensetype)
         $thislicense = $user.licenses | Where-Object {$_.accountskuid -eq $license.accountskuid}
         $datastring = (($user.displayname -replace ","," ") + ";" + $user.userprincipalname + ";" + $user.Title + ";" + $user.Office + ";" + $license.SkuPartNumber)
   
-  foreach ($row in $($thislicense.servicestatus)) {   
+  $statuses = foreach ($row in $($thislicense.servicestatus)) {
    # Build data string
-   $datastring = ($datastring + ";" + $($row.provisioningstatus))
+   $($row.provisioningstatus)
   }  
+  if ($statuses) {
+   $datastring += ";" + ($statuses -join ";")
+  }
   Out-File -FilePath $LicenseTypeReport -InputObject $datastring -Encoding UTF8 -append
  }
 } 
