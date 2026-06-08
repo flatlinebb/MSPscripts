@@ -109,11 +109,11 @@ Process {
 	    $CBSRebootPend = $null
 						
 	    ## Querying WMI for build version
-	    $WMI_OS = Get-WmiObject -Class Win32_OperatingSystem -Property BuildNumber, CSName -ComputerName $Computer -ErrorAction Stop
+	    $WMI_OS = Get-CimInstance -ClassName Win32_OperatingSystem -Property BuildNumber, CSName -ComputerName $Computer -ErrorAction Stop
 
 	    ## Making registry connection to the local/remote computer
 	    $HKLM = [UInt32] "0x80000002"
-	    $WMI_Reg = Get-WmiObject -List -Namespace "root\default" -Class "StdRegProv" -ComputerName $Computer
+	    $WMI_Reg = [WMIClass] "\\$Computer\root\default:StdRegProv"
 						
 	    ## If Vista/2008 & Above query the CBS Reg Key
 	    If ([Int32]$WMI_OS.BuildNumber -ge 6001) {
