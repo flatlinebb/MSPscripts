@@ -1,14 +1,4 @@
-﻿
-#setup and time tracking
-$StartDate = Get-Date
-$scriptname = "CleanTempFiles.ps1"
-
-$scriptpath = $MyInvocation.MyCommand.Path
-$dir = Split-Path $scriptpath
-$dir = (Get-Item -Path $dir -Verbose).FullName
-$logdelete = "$dir\delete_files_log.txt"
-
-#deleted files piped to it
+﻿#deleted files piped to it
 function delete-files{
 Param([string]$Extension, [string]$TargetFolder)
     
@@ -27,23 +17,36 @@ Param([string]$Extension, [string]$TargetFolder)
     }
 }
 
+if ($MyInvocation.InvocationName -ne '.') {
 
-##MAIN SETUP FUNCTIONALITY##
-##Target files and Extentions
-$Tgt1 = 'C:\Windows\Logs\CBS\' 
-$ext1 = '*.log'
+    #setup and time tracking
+    $StartDate = Get-Date
+    $scriptname = "CleanTempFiles.ps1"
 
-$Tgt2 = 'C:\Windows\Temp\'
-$ext2 = 'cab_*'
-##executes the deleting function with the target path and the desired extension
-delete-files -TargetFolder $Tgt1 -Extension $ext1
-delete-files -TargetFolder $Tgt2 -Extension $ext2
+    $scriptpath = $MyInvocation.MyCommand.Path
+    $dir = Split-Path $scriptpath
+    $dir = (Get-Item -Path $dir -Verbose).FullName
+    $logdelete = "$dir\delete_files_log.txt"
 
 
-#closing time tracking statements
-$EndDate = Get-Date
-$TimeSpent = New-TimeSpan -Start $StartDate -End $EndDate
-$TotalMinutes = $TimeSpent.TotalMinutes 
-$Data = "${scriptname}, ${TotalMinutes}, ${StartDate}, ${EndDate}"
-$files ="${dir}\timetracking.txt"
-$Data |Out-File -Append $files
+
+    ##MAIN SETUP FUNCTIONALITY##
+    ##Target files and Extentions
+    $Tgt1 = 'C:\Windows\Logs\CBS\'
+    $ext1 = '*.log'
+
+    $Tgt2 = 'C:\Windows\Temp\'
+    $ext2 = 'cab_*'
+    ##executes the deleting function with the target path and the desired extension
+    delete-files -TargetFolder $Tgt1 -Extension $ext1
+    delete-files -TargetFolder $Tgt2 -Extension $ext2
+
+
+    #closing time tracking statements
+    $EndDate = Get-Date
+    $TimeSpent = New-TimeSpan -Start $StartDate -End $EndDate
+    $TotalMinutes = $TimeSpent.TotalMinutes
+    $Data = "${scriptname}, ${TotalMinutes}, ${StartDate}, ${EndDate}"
+    $files ="${dir}\timetracking.txt"
+    $Data |Out-File -Append $files
+}
