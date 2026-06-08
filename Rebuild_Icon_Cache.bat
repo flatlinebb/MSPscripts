@@ -1,6 +1,6 @@
 :: Created by: Shawn Brink
-:: http://www.sevenforums.com
-:: Tutorial:  http://www.sevenforums.com/tutorials/49819-icon-cache-rebuild.html
+:: https://www.sevenforums.com
+:: Tutorial:  https://www.sevenforums.com/tutorials/49819-icon-cache-rebuild.html
 
 
 @echo off

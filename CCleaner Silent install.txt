@@ -2,7 +2,7 @@ CCleaner Silent Install:
 
 For this get the slim version, its on their website
 
-http://www.ccleaner.com/download/builds
+https://www.ccleaner.com/download/builds
 
 Silent Install;
 

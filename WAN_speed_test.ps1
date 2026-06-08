@@ -62,7 +62,7 @@ Using this method to make the submission to speedtest. Its the only way i could 
 More information for later here: https://support.microsoft.com/en-us/kb/290591 
 #>
 $objXmlHttp = New-Object -ComObject MSXML2.ServerXMLHTTP
-$objXmlHttp.Open("GET", "http://www.speedtest.net/speedtest-config.php", $False)
+$objXmlHttp.Open("GET", "https://www.speedtest.net/speedtest-config.php", $False)
 $objXmlHttp.Send()
 
 #Retrieving the content of the response.
@@ -71,14 +71,14 @@ $objXmlHttp.Send()
 <# 
 Gives me the Latitude and Longitude so i can pick the closer server to me to actually test against. It doesnt seem to automatically do this. 
 Lat and Longitude for tampa at my house are $orilat = 27.9238 and $orilon = -82.3505 
-This is corroborated against: http://www.travelmath.com/cities/Tampa,+FL - It checks out. 
+This is corroborated against: https://www.travelmath.com/cities/Tampa,+FL - It checks out.
 #>
 $oriLat = $content.settings.client.lat
 $oriLon = $content.settings.client.lon
 
 #Making another request. This time to get the server list from the site.
 $objXmlHttp1 = New-Object -ComObject MSXML2.ServerXMLHTTP
-$objXmlHttp1.Open("GET", "http://www.speedtest.net/speedtest-servers.php", $False)
+$objXmlHttp1.Open("GET", "https://www.speedtest.net/speedtest-servers.php", $False)
 $objXmlHttp1.Send()
 
 #Retrieving the content of the response.
@@ -89,7 +89,7 @@ $Cons contains all of the information about every server in the speedtest.net da
 I was going to filter this to US servers only which would speed this up a lot but i know we have overseas partners we run this against. 
 Results returned look like this for each individual server: 
  
-url : http://speedtestnet.rapidsys.com/speedtest/upload.php 
+url : https://speedtestnet.rapidsys.com/speedtest/upload.php
 lat : 27.9709 
 lon : -82.4646 
 name : Tampa, FL 

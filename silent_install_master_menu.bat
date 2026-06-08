@@ -207,7 +207,7 @@ GOTO MENU
 :Selection15
 REM REM Launch the Windows Update website in the default browser.
 ECHO Launching Windows Update website
-start http://www.update.microsoft.com
+start https://www.update.microsoft.com
 GOTO QUIT
 
 :Selection16

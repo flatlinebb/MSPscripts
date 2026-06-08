@@ -87,11 +87,11 @@ echo %RegQry%
 Find /i "x86" < CheckOS.txt > StringCheck.txt
 If %%ERRORLEVEL%% == 0 (
     Echo "This is 32 Bit Operating system"
-	wget -nc http://download.windowsupdate.com/windowsupdate/redist/standalone/7.6.7600.320/WindowsUpdateAgent-7.6-x86.exe
+	wget -nc https://download.windowsupdate.com/windowsupdate/redist/standalone/7.6.7600.320/WindowsUpdateAgent-7.6-x86.exe
 	WindowsUpdateAgent-7.6-x86.exe /quiet /norestart /wuforce
 ) ELSE (
     Echo "This is 64 Bit Operating System"
-	wget -nc http://download.windowsupdate.com/windowsupdate/redist/standalone/7.6.7600.320/WindowsUpdateAgent-7.6-x64.exe
+	wget -nc https://download.windowsupdate.com/windowsupdate/redist/standalone/7.6.7600.320/WindowsUpdateAgent-7.6-x64.exe
 	WindowsUpdateAgent-7.6-x64.exe /quiet /norestart /wuforce
 )
  

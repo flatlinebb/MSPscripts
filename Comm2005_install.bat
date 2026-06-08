@@ -137,7 +137,7 @@ REM If the psexec.exe command does not exist, show helpful info
 CLS
 ECHO.
 echo *** No PSEXEC command found on your hard drive. Please download PSTOOLS Suite from here: 
-echo *** http://technet.microsoft.com/en-us/sysinternals/bb896649
+echo *** https://technet.microsoft.com/en-us/sysinternals/bb896649
 echo *** and extract the files in it to your Windows folder or its own folder then add it to PATH
 ECHO *** If you already have PSEXEC on your system, please make sure its location is in the PATH
 ECHO.
