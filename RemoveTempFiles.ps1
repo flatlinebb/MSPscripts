@@ -1,5 +1,3 @@
-# Remove the -Whatif parameters to use the commands below
-
 # Remove all temp files for current user
 Get-ChildItem $Env:Temp | Remove-Item -Recurse -Force
 
