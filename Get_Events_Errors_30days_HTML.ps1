@@ -14,4 +14,4 @@ $body = Get-WinEvent -FilterHashTable @{LogName='Application','System'; Level=2;
  
 $body | ConvertTo-HTML -Head $css TimeCreated,LogName,ProviderName,Id,LevelDisplayName,Message -verbose > C:\LogAppView.html 
 
-Start-Process C:\LogAppView.html
+Invoke-Item C:\LogAppView.html
