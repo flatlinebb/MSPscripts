@@ -47,63 +47,21 @@ foreach ($user in $AllMsolUsers) {
 $MSOLDomain = Get-MsolDomain | where {$_.Authentication -eq "Managed" -and $_.IsDefault -eq "True"}
 $MSOLPasswordPolicy = Get-MsolPasswordPolicy -DomainName $MSOLDomain.name
 $MSOLPasswordPolicy = $MSOLPasswordPolicy.ValidityPeriod.ToString()
-
-# Use an array subexpression to assign results directly, improving performance from O(N^2) to O(N)
 $Report = @(foreach ($mailbox in $Mailboxes) {
-    $DaysToExpiry = @()
-    $DisplayName = $mailbox.DisplayName
-    $UserPrincipalName  = $mailbox.UserPrincipalName
-    $UserDomain = $UserPrincipalName.Split('@')[1]
-    $Alias = $mailbox.alias
-
-    # Fast dictionary lookups instead of API calls
-    $MailboxStat = $null
-    if ($null -ne $mailbox.ExchangeGuid -and $MailboxStatsDict.ContainsKey($mailbox.ExchangeGuid.ToString())) {
-        $MailboxStat = $MailboxStatsDict[$mailbox.ExchangeGuid.ToString()]
-    } elseif ($null -ne $mailbox.MailboxGuid -and $MailboxStatsDict.ContainsKey($mailbox.MailboxGuid.ToString())) {
-        $MailboxStat = $MailboxStatsDict[$mailbox.MailboxGuid.ToString()]
-    } else {
-        $MailboxStat = $MailboxStatsDict[$DisplayName]
-    }
-    $LastLogonTime = $MailboxStat.LastLogonTime
-
-    $TotalItemSize = $null
-    if ($null -ne $MailboxStat -and $null -ne $MailboxStat.TotalItemSize) {
-        try {
-            $TotalItemSize = [math]::Round(($MailboxStat.TotalItemSize.ToString().Split("(")[1].Split(" ")[0].Replace(",","")/1MB),2)
-        } catch {
-            $TotalItemSize = 0
-        }
-    }
-
-    $RecipientTypeDetails = $mailbox.RecipientTypeDetails
-    $MSOLUSER = $MsolUsersDict[$UserPrincipalName]
-
-    if ($null -ne $MSOLUSER -and $UserDomain -eq $MSOLDomain.name) {
-        $DaysToExpiry = $MSOLUSER | select @{Name="DaysToExpiry"; Expression={(New-TimeSpan -start (get-date) -end ($_.LastPasswordChangeTimestamp + $MSOLPasswordPolicy)).Days}}
-        $DaysToExpiry = $DaysToExpiry.DaysToExpiry
-    }
-
-    if ($null -ne $MSOLUSER) {
-        $MSOLUSER | select FirstName,LastName,@{Name='DisplayName'; Expression={[String]::join(";", $DisplayName)}},@{Name='Alias'; Expression={[String]::join(";", $Alias)}},@{Name='UserPrincipalName'; Expression={[String]::join(";", $UserPrincipalName)}},Office,Department,@{Name='TotalItemSize (MB)'; Expression={[String]::join(";", $TotalItemSize)}},@{Name='LastLogonTime'; Expression={[String]::join(";", $LastLogonTime)}},LastPasswordChangeTimestamp,@{Name="PasswordExpirationIn (Days)"; Expression={[String]::join(";", $DaysToExpiry)}},@{Name='RecipientTypeDetails'; Expression={[String]::join(";", $RecipientTypeDetails)}},islicensed,@{Name="Licenses"; Expression ={$_.Licenses.AccountSkuId}}
-    } else {
-        [PSCustomObject]@{
-            FirstName = $null
-            LastName = $null
-            DisplayName = [String]::join(";", $DisplayName)
-            Alias = [String]::join(";", $Alias)
-            UserPrincipalName = [String]::join(";", $UserPrincipalName)
-            Office = $null
-            Department = $null
-            'TotalItemSize (MB)' = [String]::join(";", $TotalItemSize)
-            LastLogonTime = [String]::join(";", $LastLogonTime)
-            LastPasswordChangeTimestamp = $null
-            "PasswordExpirationIn (Days)" = [String]::join(";", $DaysToExpiry)
-            RecipientTypeDetails = [String]::join(";", $RecipientTypeDetails)
-            islicensed = $null
-            Licenses = $null
-        }
-    }
+$DaysToExpiry = @()
+$DisplayName = $mailbox.DisplayName
+$UserPrincipalName  = $mailbox.UserPrincipalName
+$UserDomain = $UserPrincipalName.Split('@')[1]
+$Alias = $mailbox.alias
+$MailboxStat = Get-MailboxStatistics $UserPrincipalName
+$LastLogonTime = $MailboxStat.LastLogonTime
+$TotalItemSize = $MailboxStat | select @{name="TotalItemSize";expression={[math]::Round(($_.TotalItemSize.ToString().Split("(")[1].Split(" ")[0].Replace(",","")/1MB),2)}}
+$TotalItemSize = $TotalItemSize.TotalItemSize
+$RecipientTypeDetails = $mailbox.RecipientTypeDetails
+$MSOLUSER = Get-MsolUser -UserPrincipalName $UserPrincipalName
+if ($UserDomain -eq $MSOLDomain.name) {$DaysToExpiry = $MSOLUSER |  select @{Name="DaysToExpiry"; Expression={(New-TimeSpan -start (get-date) -end ($_.LastPasswordChangeTimestamp + $MSOLPasswordPolicy)).Days}}; $DaysToExpiry = $DaysToExpiry.DaysToExpiry}
+$Information = $MSOLUSER | select FirstName,LastName,@{Name='DisplayName'; Expression={[String]::join(";", $DisplayName)}},@{Name='Alias'; Expression={[String]::join(";", $Alias)}},@{Name='UserPrincipalName'; Expression={[String]::join(";", $UserPrincipalName)}},Office,Department,@{Name='TotalItemSize (MB)'; Expression={[String]::join(";", $TotalItemSize)}},@{Name='LastLogonTime'; Expression={[String]::join(";", $LastLogonTime)}},LastPasswordChangeTimestamp,@{Name="PasswordExpirationIn (Days)"; Expression={[String]::join(";", $DaysToExpiry)}},@{Name='RecipientTypeDetails'; Expression={[String]::join(";", $RecipientTypeDetails)}},islicensed,@{Name="Licenses"; Expression ={$_.Licenses.AccountSkuId}}
+$Information
 })
 $CsvPath = Join-Path $ReportPath "Office365MailboxSizeReport.csv"
 $HtmlPath = Join-Path $ReportPath "Office365MailboxSizeReport.html"
