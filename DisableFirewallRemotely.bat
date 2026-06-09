@@ -5,7 +5,7 @@ rem - Template which determines OS Type
 rem - 
 rem - This template script can be used to execute the appropriate command for the
 rem - appropriate version of windows. The original code came from the site: 
-rem - http://malektips.com/xp_dos_0025.html 
+rem - https://malektips.com/xp_dos_0025.html
 rem - 
 rem - Script last updated in August 2010. Will require updating with new releases
 rem - of windows. 

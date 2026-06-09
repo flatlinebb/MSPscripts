@@ -53,7 +53,7 @@ REM If the uptime.exe or systeminfo.exe commands does not exist, show helpful in
 CLS
 ECHO.
 echo *** No UPTIME or SYSTEMINFO commands found. Please download UPTIME from here: 
-echo *** http://support.microsoft.com/kb/232243
+echo *** https://support.microsoft.com/kb/232243
 echo *** and place in your Windows folder
 ECHO.
 pause

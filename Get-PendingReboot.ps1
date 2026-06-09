@@ -61,15 +61,15 @@ Function Get-PendingReboot
 
 .LINK
     Component-Based Servicing:
-    http://technet.microsoft.com/en-us/library/cc756291(v=WS.10).aspx
+    https://technet.microsoft.com/en-us/library/cc756291(v=WS.10).aspx
 	
     PendingFileRename/Auto Update:
-    http://support.microsoft.com/kb/2723674
-    http://technet.microsoft.com/en-us/library/cc960241.aspx
-    http://blogs.msdn.com/b/hansr/archive/2006/02/17/patchreboot.aspx
+    https://support.microsoft.com/kb/2723674
+    https://technet.microsoft.com/en-us/library/cc960241.aspx
+    https://blogs.msdn.com/b/hansr/archive/2006/02/17/patchreboot.aspx
 
     SCCM 2012/CCM_ClientSDK:
-    http://msdn.microsoft.com/en-us/library/jj902723.aspx
+    https://msdn.microsoft.com/en-us/library/jj902723.aspx
 
 .NOTES
     Author:  Brian Wilhite
