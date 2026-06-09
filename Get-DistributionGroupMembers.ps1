@@ -7,7 +7,7 @@
 # 
 # To run the script 
 # 
-# .\Get-DistributionGroupMembers.ps1 [-Office365Username admin@xxxxxx.onmicrosoft.com] [-Office365Password Password123]
+# .\Get-DistributionGroupMembers.ps1 [-Office365Username admin@xxxxxx.onmicrosoft.com] [-Office365Password (ConvertTo-SecureString 'Password123' -AsPlainText -Force)]
 # 
 # 
 # Author:                 Alan Byrne 
@@ -21,7 +21,7 @@ Param(
     [Parameter(Position=0, Mandatory=$false, ValueFromPipeline=$true)] 
     [string] $Office365Username, 
     [Parameter(Position=1, Mandatory=$false, ValueFromPipeline=$true)] 
-    [string] $Office365Password 
+    [SecureString] $Office365Password
 ) 
  
 #Constant Variables 
@@ -33,12 +33,10 @@ $arrDLMembers = @{}
 Get-PSSession | Remove-PSSession 
  
 #Did they provide creds?  If not, ask them for it.
-if (([string]::IsNullOrEmpty($Office365Username) -eq $false) -and ([string]::IsNullOrEmpty($Office365Password) -eq $false))
+if (([string]::IsNullOrEmpty($Office365Username) -eq $false) -and ($null -ne $Office365Password))
 {
-    $SecureOffice365Password = ConvertTo-SecureString -AsPlainText $Office365Password -Force     
-     
     #Build credentials object 
-    $Office365Credentials  = New-Object System.Management.Automation.PSCredential $Office365Username, $SecureOffice365Password 
+    $Office365Credentials  = New-Object System.Management.Automation.PSCredential $Office365Username, $Office365Password
 }
 else
 {
