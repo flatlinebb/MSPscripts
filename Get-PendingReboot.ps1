@@ -109,7 +109,7 @@ Process {
 	    $CBSRebootPend = $null
 						
 	    ## Querying WMI for build version
-	    $WMI_OS = Get-WmiObject -Class Win32_OperatingSystem -Property BuildNumber, CSName -ComputerName $Computer -ErrorAction Stop
+	    $WMI_OS = Get-CimInstance -ClassName Win32_OperatingSystem -Property BuildNumber, CSName -ComputerName $Computer -ErrorAction Stop
 
 	    ## Making registry connection to the local/remote computer
 	    $HKLM = [UInt32] "0x80000002"
