@@ -569,7 +569,6 @@ write-host
 # Section 3: PowerShell Command
 
 Set-CalendarProcessing $ROOMMB -AutomateProcessing AutoAccept
-# Set-CalendarProcessing <Room> -AutomateProcessing AutoAccept
 # Section 4:  Indication 
 
 write-host
